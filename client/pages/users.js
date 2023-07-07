@@ -2,7 +2,7 @@ import Link from "next/link"
 import Navbar from "../components/Navbar"
 import axios from "axios"
 
-const Users = ({users}) => {
+const Users = ({ users }) => {
 
     return <div>
         <Navbar />
@@ -12,13 +12,16 @@ const Users = ({users}) => {
                 <Link href={`/users/${u._id}`}>{u.name}</Link>
             </div>)}
         </div>
+        <Link href={`/users/userform`}>
+            <button>Add user</button>
+        </Link>
+
     </div>
 }
 
 export default Users
 
 export const getStaticProps = async () => {
-    // const res = await fetch('https://jsonplaceholder.typicode.com/users')
-    const users = await axios.get(`http://localhost:8090//user-list`)
-    return { props: { users: users.data } }
-  }
+    const users = await axios.get("http://localhost:3000/api/users")
+    return { props: { users: users.data.data } }
+}

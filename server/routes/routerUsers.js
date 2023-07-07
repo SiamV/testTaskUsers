@@ -24,13 +24,13 @@ routerUsers.get("/user/:id", async (req, res) => {
     }
 })
 
-routerUsers.post("/user", async (req, res) => {
+routerUsers.post("/adduser", async (req, res) => {
     try{
         const user = await new User({
             username: req.body.username,
             email: req.body.email,
-            password: await argon2.hash(req.body.password),
-            register_date: new Date().toLocaleDateString(),
+            password: req.body.password,
+            register_date: new Date().toLocaleDateString()
         })
         user.save()
         res.send(user)
@@ -54,3 +54,6 @@ routerUsers.delete("/user/delete/:id", async (req, res) => {
 })
 
 export default routerUsers
+
+
+            // password: await argon2.hash(req.body.password),
