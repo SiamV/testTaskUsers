@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import Navbar from "../../components/Navbar"
 import axios from "axios"
 import { useRouter } from 'next/router'
@@ -8,20 +8,20 @@ import classes from "../../styles/users.module.css"
 
 const UserForm = () => {
     const router = useRouter()
-    const [name, setName] = useState("")
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [name, setName] = useState(`${router.query.name}`)
+    const [email, setEmail] = useState(`${router.query.email}`)
     const [reqStatus, setReqStatus] = useState(false)
 
-    const addUser = async () => {
+
+    const id = router.query.id
+
+    const updateUser = async () => {
         try {
-            const response = await axios.post(`http://localhost:3000/api/users`, {
+            const response = await axios.put(`http://localhost:3000/api/users/${id}`, {
                 name: name,
-                email: email,
-                password: password,
-                register_date: new Date().toLocaleDateString()
+                email: email
             })
-            response.status === 200 ? console.log("POST req is good") || setReqStatus(false) : console.log("something wrong")
+            response.status === 200 ? console.log("PUT req is good") || setReqStatus(false) : console.log("something wrong")
         } catch (e) {
             console.log(e)
         }
@@ -30,33 +30,23 @@ const UserForm = () => {
     return <>
         <Navbar />
         <div className={classes.usersWrapper}>
-            <div>Заполните поля</div>
+            <div>Исправьте данные пользователя</div>
             <form>
                 <div>
                     <label htmlFor="name">Name: </label>
                     <input type="text" id="name" required
+                        defaultValue={name}
                         onChange={(e) => setName(e.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="email">Email: </label>
                     <input type="email" id="email" required
+                        defaultValue={email}
                         onChange={(e) => setEmail(e.target.value)} />
                 </div>
-
-                <div>
-                    <label htmlFor="password">Password: </label>
-                    <input type="password" id="password" required
-                        onChange={(e) => setPassword(e.target.value)} />
-                </div>
-
                 <Link href={"/users"} >
-                    {!reqStatus ?
-                        <button type="button" className={classes.MenuButton}
-                        onClick={() => { addUser(), setReqStatus(true) }}>add new user
-                        </button>
-                        : <Preloader />}
-
-
+                    {!reqStatus ? <button type="button" className={classes.MenuButton}
+                        onClick={() => { updateUser(), setReqStatus(true) }}>update</button> : <Preloader />}
                 </Link>
             </form>
         </div>

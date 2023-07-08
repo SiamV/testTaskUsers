@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Head from "next/head";
+import classes from "../styles/homePage.module.css"
 
 const Index = () => {
     return <>
@@ -14,7 +15,8 @@ const Index = () => {
         <div>
             <Navbar />
             <h2>Тестовое задание</h2>
-            <p>Task Description:
+            <textarea className={classes.textArea} readOnly>
+                Task Description:
                 Требуется разработать API сервис для хранения пользователей
                 - Сервис должен быть организован по принципу REST API
                 - Пароли хэшировать на стороне сервера при создании пользователя
@@ -39,7 +41,7 @@ const Index = () => {
                 - GET /user-list
                 - Сервис требуется реализовать при помощи fastapi и любой поддерживаемой им ORM (sql, nosql база даннх на выбор, кроме SQLite)
                 - Весь стек должен запускаться через docker-compose
-            </p>
+            </textarea>
         </div>
     </>
 }
