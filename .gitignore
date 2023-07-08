@@ -8,6 +8,14 @@
 /.pnp
 .pnp.js
 
+/node_modules
+/server/node_modules
+/client/node_modules
+/client/.next
+/.pnp
+.pnp.js
+.next
+
 # testing
 /coverage
 

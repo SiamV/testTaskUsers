@@ -5,6 +5,7 @@ import axios from 'axios'
 import Link from "next/link"
 import Preloader from '../../components/common/Preloader'
 import classes from "../../styles/users.module.css"
+import { API_URL }  from "../config/index"
 
 export default function Page({ user }) {
   const router = useRouter()
@@ -12,7 +13,7 @@ export default function Page({ user }) {
 
   const deleteUser = async (idUser) => {
     try {
-      const response = await axios.delete(`http://localhost:3000/api/users/${idUser}`)
+      const response = await axios.delete(`${API_URL}/api/users/${idUser}`)
       response.status === 200 ? console.log("DELETE req is good") || setReqStatus(false) : console.log("something wrong")
     } catch (e) {
       console.log(e)
@@ -51,6 +52,6 @@ export default function Page({ user }) {
 }
 
 export const getServerSideProps = async ({ params }) => {
-  const user = await axios.get(`http://localhost:3000/api/users/${params.id}`)
+  const user = await axios.get(`${API_URL}/api/users/${params.id}`)
   return { props: { user: user.data.data } }
 }
