@@ -22,3 +22,4 @@
 # production
 /server/build
 /client/build
+/build

@@ -5,7 +5,7 @@ import axios from 'axios'
 import Link from "next/link"
 import Preloader from '../../components/common/Preloader'
 import classes from "../../styles/users.module.css"
-import { API_URL }  from "../config/index"
+import { API_URL }  from "../../config/index"
 
 export default function Page({ user }) {
   const router = useRouter()

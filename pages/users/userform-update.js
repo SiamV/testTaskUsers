@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Link from "next/link"
 import Preloader from "../../components/common/Preloader"
 import classes from "../../styles/users.module.css"
-import {API_URL} from "../config/index"
+import {API_URL} from "../../config/index"
 
 const UserForm = () => {
     const router = useRouter()
