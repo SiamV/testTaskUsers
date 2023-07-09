@@ -19,10 +19,10 @@
 Technical requirements
 Требуется разработать следующие api эндпоинты:
 - POST /user
-- GET /user/<user-id>
-- PUT /user/<user-id>
-- PATCH /user/<user-id>
-- DELETE /user/<user-id>
+- GET /user/user-id
+- PUT /user/user-id
+- PATCH /user/user-id
+- DELETE /user/user-id
 - GET /user-list
 - Сервис требуется реализовать при помощи fastapi и любой поддерживаемой им ORM (sql, nosql база даннх на выбор, кроме SQLite)
 - Весь стек должен запускаться через docker-compose
@@ -42,10 +42,10 @@ Next.js рендерит разметку на стороне сервера (SS
 -папки pages/api/users
 endPoints доступны по следующим запросам:
 - GET /api/users (получение всех пользователей)
-- GET /api/users/<user-id> (получение одного пользователя по id)
+- GET /api/users/user-id (получение одного пользователя по id)
 - POST /api/users (создание нового пользователя)
-- PUT /api/users/<user-id> (редактирование существующего пользователя по id)
-- DELETE /api/users/<user-id> (удаление пользователя по id)
+- PUT /api/users/user-id (редактирование существующего пользователя по id)
+- DELETE /api/users/user-id (удаление пользователя по id)
 
 Маршрутизация:
 -папка pages/undex.js, pages/users.js, pages/users/[id].js ...
